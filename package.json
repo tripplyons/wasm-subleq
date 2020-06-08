@@ -1,0 +1,35 @@
+{
+  "name": "wasm-subleq",
+  "version": "1.0.0",
+  "description": "A simple Virtual Machine written in raw WebAssembly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tripplyons/wasm-subleq.git"
+  },
+  "keywords": [
+    "vm",
+    "wasm",
+    "webassembly",
+    "subleq",
+    "oisc",
+    "urisc",
+    "risc",
+    "emulator",
+    "emulation",
+    "fast"
+  ],
+  "author": "Tripp Lyons",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tripplyons/wasm-subleq/issues"
+  },
+  "homepage": "https://github.com/tripplyons/wasm-subleq#readme",
+  "dependencies": {
+    "inline-webassembly": "^1.0.6"
+  }
+}

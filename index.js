@@ -3,7 +3,7 @@ const fs = require('fs')
 
 const prog = fs.readFileSync('subleq.wat', { encoding: 'utf8' })
 
-function runAndLog(subleq) {
+function runAndLog(subleq, n=1) {
     console.log('----------------')
     console.log('About to run')
     // get the instruction pointer
@@ -20,30 +20,32 @@ function runAndLog(subleq) {
 
     console.log('IP =', ip)
 
-    subleq.runInstr()
-    console.log('Done running')
+    subleq.runInstrs(n)
+    console.log(`Done running ${n} instruction(s)`)
 
     console.log('*B =', subleq.get(subleq.get(b)))
 
     ip = subleq.getIp()
     console.log('IP =', ip)
+    console.log('----------------')
 }
 
-iw(prog, {
-    js: {
-        ip: new WebAssembly.Global({value:'i32', mutable:true})
-    }
-}).then((subleq) => {
-    subleq.set(0, 123)
-    subleq.set(1, 321)
+iw(prog).then((subleq) => {
+    // example program that keeps on subtracting 1 from address 1
+    // load data
+    subleq.set(0, 1)
 
-    // load instructions
+    // load instructions (same thing)
     subleq.set(3, 0)
     subleq.set(4, 1)
-    subleq.set(5, 9)
+    subleq.set(5, 3)
 
     // set instruction pointer (0 when module initiated)
     subleq.setIp(3)
 
-    runAndLog(subleq)
+    let startTime = (new Date()).getTime()
+    runAndLog(subleq, 100000000)
+    let endTime = (new Date()).getTime()
+
+    console.log(`took ${endTime - startTime}ms`)
 });

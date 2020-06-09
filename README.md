@@ -1,6 +1,13 @@
 # WASM Subleq
 A simple Virtual Machine written in raw WebAssembly (WAT)
 
+## Why?
+
+- It works in the browser (or other WASM environments
+- It is very fast: about **100,000,000 instructions/second** on my laptop's Chrome browser (twice as fast on Node.js on the same machine)
+- It is simple: anyone can program a compatible VM in less than 20 lines of JavaScript/Python code
+- It is so easy to port that you can run programs anywhere!
+
 ## Usage
 
 Use the [subleq.wasm](subleq.wasm) WebAssembly module like any other module. You can find some usage of its API in [index.js](index.js), but it will be documented later.

@@ -5,8 +5,7 @@
 
 (module
 ;; instruction pointer
-    (global $ip (import "js" "ip") (mut i32))
-    (export "ip" (global $ip))
+    (global $ip (mut i32) (i32.const 0))
 
     (memory $mem 1)
     (export "memory" (memory $mem))
@@ -85,6 +84,26 @@
         )
     )
     (export "runInstr" (func $runInstr))
+
+;; run multiple instructions
+    (func $runInstrs (param $n i32)
+        loop $l
+            call $runInstr
+
+            local.get $n
+            i32.const -1
+            i32.add
+            local.set $n
+
+            i32.const 0
+            local.get $n
+            i32.ne
+
+            br_if $l
+        end
+    )
+    (export "runInstrs" (func $runInstrs))
+
 
 ;; read from memory
     (func $get (param $adr i32) (result i32)

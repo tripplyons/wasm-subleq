@@ -7,7 +7,9 @@
 ;; instruction pointer
     (global $ip (mut i32) (i32.const 0))
 
+;; memory
     (memory $mem 1)
+;; export it to be accessed
     (export "memory" (memory $mem))
 
 ;; the basic subleq instruction (void -> void)
@@ -88,17 +90,17 @@
 ;; run multiple instructions
     (func $runInstrs (param $n i32)
         loop $l
+;; run once
             call $runInstr
 
+;; decrement remaining instructions
             local.get $n
             i32.const -1
             i32.add
-            local.set $n
+;; set without popping
+            local.tee $n
 
-            i32.const 0
-            local.get $n
-            i32.ne
-
+;; continue back if remaining
             br_if $l
         end
     )

@@ -12,21 +12,21 @@ function runAndLog(subleq, n=1) {
     let b = ip + 1
     let c = ip + 2
     // get data from memory and log
+    console.log('IP =', ip)
+
     console.log('A =', subleq.get(a))
     console.log('B =', subleq.get(b))
     console.log('C =', subleq.get(c))
     console.log('*A =', subleq.get(subleq.get(a)))
     console.log('*B =', subleq.get(subleq.get(b)))
 
-    console.log('IP =', ip)
-
     subleq.runInstrs(n)
     console.log(`Done running ${n} instruction(s)`)
 
-    console.log('*B =', subleq.get(subleq.get(b)))
-
     ip = subleq.getIp()
     console.log('IP =', ip)
+    console.log('*B =', subleq.get(subleq.get(b)))
+
     console.log('----------------')
 }
 

@@ -10,7 +10,18 @@ A simple Virtual Machine written in raw WebAssembly (WAT)
 
 ## Usage
 
-Use the [subleq.wasm](subleq.wasm) WebAssembly module like any other module. You can find some usage of its API in [index.js](index.js), but it will be documented later.
+Use the [subleq.wasm](subleq.wasm) module like any other WebAssembly module.
+
+## API
+
+```
+module.runInstr() - Run the current instruction
+module.runInstrs(num) - run runInstr num times (faster than looping in JS)
+module.set(position, value) - memory[position] = value
+module.get(position) - return memory[position]
+module.setIp(value) - instructionPointer = value
+moudle.getIp() - return instructionPointer
+```
 
 ## Development Setup
 
